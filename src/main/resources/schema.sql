@@ -18,7 +18,7 @@ CREATE TABLE addresses (
 CREATE TABLE contacts (
     id SERIAL PRIMARY KEY,
     hotel_id INTEGER NOT NULL REFERENCES hotels(id) ON DELETE CASCADE,
-    contact_type VARCHAR(50) NOT NULL,
+    contact_type VARCHAR(50) NOT NULL DEFAULT 'phone',
     contact_value VARCHAR(255) NOT NULL
 );
 
@@ -29,9 +29,13 @@ CREATE TABLE arrival_times (
     check_out TIME NOT NULL
 );
 
-CREATE TABLE hotel_amenities (
+CREATE TABLE amenities (
     id SERIAL PRIMARY KEY,
+    name VARCHAR(100) UNIQUE NOT NULL
+);
+
+CREATE TABLE hotel_amenities (
     hotel_id INTEGER NOT NULL REFERENCES hotels(id) ON DELETE CASCADE,
-    amenity_name VARCHAR(100) NOT NULL,
-    UNIQUE(hotel_id, amenity_name)
+    amenity_id INTEGER NOT NULL REFERENCES amenities(id) ON DELETE CASCADE,
+    PRIMARY KEY (hotel_id, amenity_id)
 );
