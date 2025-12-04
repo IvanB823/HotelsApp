@@ -1,28 +1,29 @@
-package model;
+package ru.practicum.test_task.model;
 
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalTime;
 
 @Entity
-@Table(name = "contacts")
+@Table(name = "arrival_times")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Contact {
+public class ArrivalTime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
 
-    @Column(name = "contact_type")
-    private String contactType;
+    @Column(name = "check_in")
+    private LocalTime checkIn;
 
-    @Column(name = "contact_value")
-    private String contactValue;
+    @Column(name = "check_out")
+    private LocalTime checkOut;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 }

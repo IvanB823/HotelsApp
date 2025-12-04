@@ -1,4 +1,4 @@
-package model;
+package ru.practicum.test_task.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -9,6 +9,8 @@ import java.util.List;
 @Entity
 @Table(name = "hotels")
 @Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
